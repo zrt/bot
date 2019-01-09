@@ -40,6 +40,7 @@ def markunread(entryid):
 	client.update_entries([entryid],'unread')
 
 def markstar(entryid):
+	os.system('echo %d >> stared.txt'%entryid)
 	pass
 
 def markunstar(entryid):

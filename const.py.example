@@ -4,7 +4,7 @@
 BOT_TOKEN = "TOKEN"
 BOT_ADMIN = [2333,333]
 
-MODULE_NAME= ["cmd_start", "cmd_help", "cmd_uptime", "cmd_rss", "cmd_rssadd", 'cmd_rsssetlatestentryid', 'callback_rss']
+MODULE_NAME= ["cmd_start", "cmd_help", "cmd_uptime", "cmd_rss", "cmd_rssadd", 'cmd_rsssetlatestentryid', 'callback_rss', 'cmd_gitpull']
 JOB_NAME = ['job_rss']
 
 # miniflux

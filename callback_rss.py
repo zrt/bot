@@ -29,12 +29,12 @@ def callback_query(bot, update):
         threading.Thread(target = miniflux_client.markread, args = (entryid,)).start()
         motd_keyboard = [[
             InlineKeyboardButton(
-                '📦✔️',
+                '📦  ✅',
                 callback_data="rssmarkunread,%d,%d,%d" % (entryid,1,isstar)
             )
         ,
             InlineKeyboardButton(
-                '✨'+['', '✔️'][isstar],
+                '✨'+['', ' ✅'][isstar],
                 callback_data="%s,%d,%d,%d" % (("rssmarkstar","rssmarkunstar")[isstar], entryid, 1, isstar)
             )
         ]]
@@ -43,12 +43,12 @@ def callback_query(bot, update):
         threading.Thread(target = miniflux_client.markstar, args = (entryid,)).start()
         motd_keyboard = [[
             InlineKeyboardButton(
-                '📦'+['', '✔️'][isread],
+                '📦'+['', ' ✅'][isread],
                 callback_data="%s,%d,%d,%d" % (("rssmarkread","rssmarkunread")[isread],entryid,isread,1)
             )
         ,
             InlineKeyboardButton(
-                '✨✔️',
+                '✨ ✅',
                 callback_data="rssmarkstar,%d,%d,%d" % (entryid, isread, 1)
             )
         ]]
@@ -63,7 +63,7 @@ def callback_query(bot, update):
             )
         ,
             InlineKeyboardButton(
-                '✨'+['', '✔️'][isstar],
+                '✨'+['', ' ✅'][isstar],
                 callback_data="%s,%d,%d,%d" % (("rssmarkstar","rssmarkunstar")[isstar], entryid, 0, isstar)
             )
         ]]
@@ -72,7 +72,7 @@ def callback_query(bot, update):
         miniflux_client.markunstar(entryid)
         motd_keyboard = [[
             InlineKeyboardButton(
-                '📦'+['', '✔️'][isread],
+                '📦'+['', ' ✅'][isread],
                 callback_data="%s,%d,%d,%d" % (("rssmarkread","rssmarkunread")[isread],entryid,isread,0)
             )
         ,
