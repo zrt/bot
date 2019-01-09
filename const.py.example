@@ -1,0 +1,5 @@
+# const example
+BOT_TOKEN = "TOKEN"
+BOT_ADMIN = [2333,3333]
+
+MODULE_NAME= ["cmd_start", "cmd_help", "cmd_uptime"]
