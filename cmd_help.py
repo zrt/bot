@@ -7,6 +7,7 @@ def help(bot, update):
 /reload reload this bot
 /uptime show uptime
 /rss miniflux rss
+/gitpull run git pull
 '''
     bot.send_message(chat_id=update.message.chat_id, text=text)
 
@@ -19,4 +20,5 @@ help - show help
 reload - reload this bot
 uptime - show uptime
 rss -  miniflux rss
+gitpull - run git pull
 '''
