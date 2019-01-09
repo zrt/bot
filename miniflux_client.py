@@ -27,7 +27,7 @@ def get_latest_entry_id():
 	entries =  client.get_entries(status = "unread", limit = 1, order='id', direction = 'asc')
 	if len(entries) == 0:
 		entries =  client.get_entries(status = "read", limit = 1, order='id', direction = 'asc')
-	return entries['entries'][0]['id']
+	return entries['entries'][0]['id']-1
 
 def get_entries(after_entry_id):
 	if after_entry_id == None:
