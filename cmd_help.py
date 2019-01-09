@@ -6,6 +6,7 @@ def help(bot, update):
     text = '''/help show this
 /reload reload this bot
 /uptime show uptime
+/rss miniflux rss
 '''
     bot.send_message(chat_id=update.message.chat_id, text=text)
 
@@ -17,5 +18,5 @@ _handler = CommandHandler('help', help)
 help - show help
 reload - reload this bot
 uptime - show uptime
-
+rss -  miniflux rss
 '''

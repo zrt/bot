@@ -62,6 +62,7 @@ var.get('bot', bot)
 var.get('bot_username', bot_username)
 updater = Updater(bot=bot)
 dispatcher = updater.dispatcher
+job_queue = updater.job_queue
 
 
 def check_admin(check_id):
@@ -73,6 +74,7 @@ def check_admin(check_id):
 def bot_reload(bot, update):
     global const
     global command_module
+    global current_job
     # global database
     # db
 
@@ -86,6 +88,10 @@ def bot_reload(bot, update):
     # db
     reload_admin_list()
 
+    ## stop the jobs
+    for job in current_job:
+        job.schedule_removal()
+    current_job = []
     ## remove old handlers
     for current_module in command_module:
         dispatcher.remove_handler(current_module._handler)
@@ -98,7 +104,12 @@ def bot_reload(bot, update):
             current_module = importlib.reload(current_module)
             command_module.append(current_module)
             dispatcher.add_handler(current_module._handler)
-        
+        for job_name in const.JOB_NAME:
+            job_module = importlib.import_module(job_name)
+            job_module = importlib.reload(job_module)
+            job = job_queue.run_repeating(job_module._callback,interval= job_module._interval, first=job_module._first)
+            current_job.append(job)
+
         bot.send_message(chat_id=update.message.chat_id, text="reload_cmd_success")
     except Exception as e:
         failed_text = "reload_cmd_failed"
@@ -113,13 +124,19 @@ dispatcher.add_handler(reload_handler)
 
 # initial other commands
 command_module = []
+current_job = []
+
 for module_name in const.MODULE_NAME:
     current_module = importlib.import_module(module_name)
     command_module.append(current_module)
     dispatcher.add_handler(current_module._handler)
+for job_name in const.JOB_NAME:
+    job_module = importlib.import_module(job_name)
+    job = job_queue.run_repeating(job_module._callback,interval= job_module._interval, first=job_module._first)
+    current_job.append(job)
 
 updater.start_polling()
-
+updater.idle()
 
 
 

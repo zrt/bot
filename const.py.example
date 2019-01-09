@@ -1,5 +1,15 @@
 # const example
-BOT_TOKEN = "TOKEN"
-BOT_ADMIN = [2333,3333]
+# some const
 
-MODULE_NAME= ["cmd_start", "cmd_help", "cmd_uptime"]
+BOT_TOKEN = "TOKEN"
+BOT_ADMIN = [2333,333]
+
+MODULE_NAME= ["cmd_start", "cmd_help", "cmd_uptime", "cmd_rss", "cmd_rssadd", 'cmd_rsssetlatestentryid', 'callback_rss']
+JOB_NAME = ['job_rss']
+
+# miniflux
+MINIFLUX_URL = "URL"
+MINIFLUX_USER = 'root'
+MINIFLUX_PASS = 'pass'
+MINIFLUX_CHANNEL_ID = -23333
+MINIFLUX_MAXUNREAD = 20
