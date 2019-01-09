@@ -25,6 +25,8 @@ def create_feed(url):
 
 def get_latest_entry_id():
 	entries =  client.get_entries(status = "unread", limit = 1, order='id', direction = 'asc')
+	if len(entries) == 0:
+		entries =  client.get_entries(status = "read", limit = 1, order='id', direction = 'asc')
 	return entries['entries'][0]['id']
 
 def get_entries(after_entry_id):
