@@ -1,5 +1,6 @@
 import miniflux
 import const
+import os
 
 client = miniflux.Client(const.MINIFLUX_URL, const.MINIFLUX_USER, const.MINIFLUX_PASS)
 
