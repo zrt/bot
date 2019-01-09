@@ -49,7 +49,7 @@ def callback_query(bot, update):
         ,
             InlineKeyboardButton(
                 '✨ ✅',
-                callback_data="rssmarkstar,%d,%d,%d" % (entryid, isread, 1)
+                callback_data="rssmarkunstar,%d,%d,%d" % (entryid, isread, 1)
             )
         ]]
         callbackanswer = '已星标'
