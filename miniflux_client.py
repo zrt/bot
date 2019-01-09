@@ -30,7 +30,7 @@ def get_latest_entry_id():
 def get_entries(after_entry_id):
 	if after_entry_id == None:
 		return []
-	entries =  client.get_entries(status = "unread", limit = 10, order='id', direction = 'desc', after_entry_id=after_entry_id)
+	entries =  client.get_entries(status = "unread", limit = 10, order='id', direction = 'asc', after_entry_id=after_entry_id)
 	return entries['entries']
 
 def markread(entryid):
