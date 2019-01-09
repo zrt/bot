@@ -12,7 +12,12 @@ def get_feeds_num():
 def discover(url):
 	if not url.startswith('http'):
 		url = 'http://'+url
-	return client.discover(url)
+	ret = []
+	try:
+		ret = client.discover(url)
+	except:
+		ret = []
+	return ret
 
 def create_feed(url):
 	feedid = -1
