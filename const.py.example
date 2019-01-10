@@ -1,11 +1,12 @@
 # const example
 # some const
+import datetime
 
 BOT_TOKEN = "TOKEN"
 BOT_ADMIN = [2333,333]
 
 MODULE_NAME= ["cmd_start", "cmd_help", "cmd_uptime", "cmd_rss", "cmd_rssadd", 'cmd_rsssetlatestentryid', 'callback_rss', 'cmd_gitpull']
-JOB_NAME = ['job_rss']
+JOB_NAME = ['job_rss', 'job_daily']
 
 # miniflux
 MINIFLUX_URL = "URL"
@@ -13,3 +14,8 @@ MINIFLUX_USER = 'root'
 MINIFLUX_PASS = 'pass'
 MINIFLUX_CHANNEL_ID = -23333
 MINIFLUX_MAXUNREAD = 20
+
+DAILY_CHANNEL_ID = -2333333
+DAILY_TIME = datetime.time(23,30)
+DAILY_MESSAGE = 'hhh'
+
