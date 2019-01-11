@@ -1,6 +1,5 @@
 import miniflux
 import const
-import os
 
 client = miniflux.Client(const.MINIFLUX_URL, const.MINIFLUX_USER, const.MINIFLUX_PASS)
 
@@ -45,11 +44,10 @@ def markunread(entryid):
 	client.update_entries([entryid],'unread')
 
 def markstar(entryid):
-	os.system('echo %d >> stared.txt'%entryid)
-	pass
+	client.toggle_bookmark(entryid)
 
 def markunstar(entryid):
-	pass
+	client.toggle_bookmark(entryid)
 
 
 
