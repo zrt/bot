@@ -18,7 +18,10 @@ def get_info(entry):
     ret += entry['url']+'\n'
     ret += '%s, .%d\n'%(entry['published_at'],entry['id'])
     s = escapehtml(entry['content'])
-    if len(s) <1500:
+    s = s.replace('\r\n', '\n')
+    while '\n\n' in s:
+        s = s.replace('\n\n','\n')
+    if len(s) < 500:
         ret += escapehtml(s)
     else:
         ret += escapehtml(s) +'...'
