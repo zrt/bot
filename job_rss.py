@@ -17,10 +17,11 @@ def get_info(entry):
     ret += '%s\n'%entry['author']
     ret += entry['url']+'\n'
     ret += '%s, .%d\n'%(entry['published_at'],entry['id'])
-    if len(entry['content']) <1500:
-        ret += escapehtml(entry['content'][:1500])
+    s = escapehtml(entry['content'])
+    if len(s) <1500:
+        ret += escapehtml(s)
     else:
-       ret += escapehtml(entry['content'][:1500]) +'...'
+        ret += escapehtml(s) +'...'
     return ret
 
 def send_entry(bot, entry):
