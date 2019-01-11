@@ -22,9 +22,9 @@ def get_info(entry):
     while '\n\n' in s:
         s = s.replace('\n\n','\n')
     if len(s) < 500:
-        ret += escapehtml(s)
+        ret += s
     else:
-        ret += escapehtml(s) +'...'
+        ret += s[:500] +'...'
     return ret
 
 def send_entry(bot, entry):
