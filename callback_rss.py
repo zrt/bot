@@ -25,8 +25,6 @@ def callback_query(bot, update):
     motd_keyboard = None
     callbackanswer = ''
     if args[0] == 'rssmarkread':
-        var.set('rssunreadnum',var.get('rssunreadnum', 1)-1)
-        threading.Thread(target = miniflux_client.markread, args = (entryid,)).start()
         motd_keyboard = [[
             InlineKeyboardButton(
                 '📦  ✅',
@@ -40,11 +38,10 @@ def callback_query(bot, update):
         ]]
         callbackanswer = '已标记为已读'
     elif args[0] == 'rssmarkstar':
-        threading.Thread(target = miniflux_client.markstar, args = (entryid,)).start()
         motd_keyboard = [[
             InlineKeyboardButton(
-                '📦'+['', ' ✅'][isread],
-                callback_data="%s,%d,%d,%d" % (("rssmarkread","rssmarkunread")[isread],entryid,isread,1)
+                '📦 ✅',
+                callback_data="%s,%d,%d,%d" % (("rssmarkread","rssmarkunread")[1],entryid,isread,1)
             )
         ,
             InlineKeyboardButton(
@@ -54,8 +51,6 @@ def callback_query(bot, update):
         ]]
         callbackanswer = '已星标'
     elif args[0] == 'rssmarkunread':
-        var.set('rssunreadnum',var.get('rssunreadnum', 0)+1)
-        miniflux_client.markunread(entryid)
         motd_keyboard = [[
             InlineKeyboardButton(
                 '📦',
@@ -69,7 +64,6 @@ def callback_query(bot, update):
         ]]
         callbackanswer = '已标记为未读'
     elif args[0] == 'rssmarkunstar':
-        miniflux_client.markunstar(entryid)
         motd_keyboard = [[
             InlineKeyboardButton(
                 '📦'+['', ' ✅'][isread],
@@ -95,6 +89,18 @@ def callback_query(bot, update):
         callback_query_id=update.callback_query.id,
         text=callbackanswer
     )
+    if args[0] == 'rssmarkread':
+        var.set('rssunreadnum',var.get('rssunreadnum', 1)-1)
+        miniflux_client.markread(entryid)
+    elif args[0] == 'rssmarkstar':
+        miniflux_client.markread(entryid)
+        miniflux_client.markstar(entryid)
+    elif args[0] == 'rssmarkunread':
+        miniflux_client.markunread(entryid)
+    elif args[0] == 'rssmarkunstar':
+        miniflux_client.markunstar(entryid)
+    else:
+        return
 
 
 # _handler = CallbackQueryHandler(callback_query, pattern = r'$(rssmarkread|rssmarkstar|rssmarkunread|rssmarkunstar),')

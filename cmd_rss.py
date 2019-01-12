@@ -22,11 +22,13 @@ user: {}
 feeds num: {}
 bind channel: {}
 lastest entry id: {}
+unread num: {}
+max unread num: {}
 ---
 /rssadd add a new rss feed
 /rsssetlatestentryid <id> set latest entry id
 '''.format(const.MINIFLUX_URL, const.MINIFLUX_USER, miniflux_client.get_feeds_num(), const.MINIFLUX_CHANNEL_ID
-    , var.get('rsslatestid', None))
+    , var.get('rsslatestid', None), var.get('rssunreadnum', None), const.MINIFLUX_MAXUNREAD)
     update.message.reply_text(text)
 
 
