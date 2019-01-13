@@ -16,7 +16,6 @@ def rss(bot, update):
     if not check_admin(update.message.from_user.id):
         return
     # show info and help
-    reply_keyboard = [['ADD']]
     text = '''Miniflux url: {}
 user: {}
 feeds num: {}

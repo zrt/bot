@@ -134,6 +134,10 @@ for job_name in const.JOB_NAME:
     job_module = importlib.import_module(job_name)
     job = job_queue.run_repeating(job_module._callback,interval= job_module._interval, first=job_module._first)
     current_job.append(job)
+if const.ENABLE_HTTPCALLBACK:
+    import threading
+    httpcallbacklib = importlib.import_module('httpcallback')
+    threading.Thread(target=httpcallbacklib.startapp,args=(bot,)).start()
 
 updater.start_polling()
 updater.idle()

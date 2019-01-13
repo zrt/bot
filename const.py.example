@@ -5,7 +5,7 @@ import datetime
 BOT_TOKEN = "TOKEN"
 BOT_ADMIN = [2333,333]
 
-MODULE_NAME= ["cmd_start", "cmd_help", "cmd_uptime", "cmd_rss", "cmd_rssadd", 'cmd_rsssetlatestentryid', 'callback_rss', 'cmd_gitpull']
+MODULE_NAME= ["cmd_start", "cmd_help", "cmd_uptime", "cmd_rss", "cmd_rssadd", 'cmd_rsssetlatestentryid', 'callback_rss', 'cmd_gitpull', 'cmd_httpcallback']
 JOB_NAME = ['job_rss', 'job_daily']
 
 # miniflux
@@ -19,3 +19,9 @@ DAILY_CHANNEL_ID = -2333333
 DAILY_TIME = datetime.time(23,30)
 DAILY_MESSAGE = 'hhh'
 
+# http callback
+ENABLE_HTTPCALLBACK = False
+HTTPCALLBACK_PORT = 2333
+HTTPCALLBACK_TOKEN = 'random' # random or some str or ''
+HTTPCALLBACK_BINDCHANNEL = -23333
+HTTPCALLBACK_MAXLEN = 500

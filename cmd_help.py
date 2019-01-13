@@ -8,6 +8,7 @@ def help(bot, update):
 /uptime show uptime
 /rss miniflux rss
 /gitpull run git pull
+/httpcallback show http callback config
 '''
     bot.send_message(chat_id=update.message.chat_id, text=text)
 
@@ -21,4 +22,5 @@ reload - reload this bot
 uptime - show uptime
 rss -  miniflux rss
 gitpull - run git pull
+httpcallback - show http callback config
 '''
