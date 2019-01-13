@@ -11,12 +11,16 @@ BOT = None
 @app.route('/<path:msg>',methods=['GET'])
 def callback(msg):
     global TOKEN
+    global BOT
     token = request.args.get('token')
     if token == None or len(token) != len(TOKEN) or token != TOKEN:
         return 'Unauthorized',403
+    argmsg = request.args.get('msg')
     msg = msg[:const.HTTPCALLBACK_MAXLEN]
-    if bot != None:
-        bot.send_message(
+    if argmsg != None:
+        msg = msg + '\n' + argmsg[:const.HTTPCALLBACK_MAXLEN]
+    if BOT != None:
+        BOT.send_message(
             chat_id=const.HTTPCALLBACK_BINDCHANNEL, 
             text=msg,
         )
