@@ -4,7 +4,7 @@ import const,var
 import miniflux_client
 from telegram import (ReplyKeyboardMarkup, ReplyKeyboardRemove)
 from telegram.ext import (CommandHandler,ConversationHandler, RegexHandler, MessageHandler, Filters)
-
+import articlemanager
 
 WM, READY, SENT = range(3)
 
@@ -40,7 +40,7 @@ def confirm(bot, update):
 
 def prevpage(bot, update):
     pos = var.get('blogarticlepos', 0 )
-    if pos == 0:
+    if pos <= 0:
         update.message.reply_text('没有上一页qwq')
     else:
         pos = pos -1
@@ -50,7 +50,7 @@ def prevpage(bot, update):
 
 def nextpage(bot, update):
     pos = var.get('blogarticlepos', 0 )
-    if pos == (len(var.get('blogarticle',''))-1)//500:
+    if pos >= (len(var.get('blogarticle',''))-1)//500:
         update.message.reply_text('没有下一页qwq')
     else:
         pos = pos +1
