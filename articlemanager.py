@@ -28,9 +28,9 @@ tags: 灌水
     except Exception as e:
         print(e)
 
-def create(title,titleascii,article):
+def create(title,titleascii,article, photos):
     # 异步create
-    t = threading.Thread(target=create_worker,args=(title,titleascii,article))
+    t = threading.Thread(target=create_worker,args=(title,titleascii,article, photos))
     t.start()
     return t
 
