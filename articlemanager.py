@@ -4,11 +4,6 @@ import const
 import os
 import threading, time,codecs
 
-import sys  
-
-reload(sys)  
-sys.setdefaultencoding('utf8')
-
 BLOGPATH = const.BLOGPATH
 POSTSPATH = os.path.join(BLOGPATH, 'source', '_posts')
 
