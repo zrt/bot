@@ -19,13 +19,13 @@ def writemode(bot, update):
         return ConversationHandler.END
     var.set('blogarticle', '')
     var.set('blogarticleimg', [])
-    update.message.reply_text('进入写作模式\n请发给我文字或图片\n使用/preview 命令来预览发送\n使用/cancel 命令退出写作模式')
+    update.message.reply_text('进入写作模式\n请发给我文字或图片\n/preview 命令来预览发送\n/cancel 命令退出写作模式')
     return WM
 
 def addtext(bot, update):
     text = update.message.text
     var.set('blogarticle', var.get('blogarticle','')+text+'\n')
-    update.message.reply_text('(%d)\n%s'%(len(var.get('blogarticle','')), var.get('blogarticle','')[-500:] + '...\n使用/preview 命令来预览发送\n使用/cancel 命令退出写作模式'))
+    update.message.reply_text('(%d)\n%s'%(len(var.get('blogarticle','')), var.get('blogarticle','')[-500:] + '...\n/preview 命令来预览发送\n/cancel 命令退出写作模式'))
     return WM
 
 def addimg(bot, update):
@@ -35,7 +35,7 @@ def addimg(bot, update):
 
 def confirm(bot, update):
     var.set('blogarticlepos', 0)
-    update.message.reply_text('(%d/%d)\n%s'%(1,(len(var.get('blogarticle',''))-1)//500+1, var.get('blogarticle','')[:500] + '...\n/yes [title] [ascii title]  确认发送\n使用/no 继续编辑\n/prevpage 上一页 \n/nextpage 下一页'))
+    update.message.reply_text('(%d/%d)\n%s'%(1,(len(var.get('blogarticle',''))-1)//500+1, var.get('blogarticle','')[:500] + '...\n/yes [title] [ascii title]  确认发送\n/no 继续编辑\n/prevpage 上一页 \n/nextpage 下一页'))
     return READY
 
 def prevpage(bot, update):
@@ -45,7 +45,7 @@ def prevpage(bot, update):
     else:
         pos = pos -1
         var.set('blogarticlepos', pos)
-        update.message.reply_text('(%d/%d)\n%s'%(pos+1,(len(var.get('blogarticle',''))-1)//500+1, var.get('blogarticle','')[pos*500:(pos+1)*500] + '...\n/yes [title] [ascii title] 确认发送\n使用/no 继续编辑\n/prevpage 上一页 \n/nextpage 下一页\n使用/cancel 命令退出写作模式'))
+        update.message.reply_text('(%d/%d)\n%s'%(pos+1,(len(var.get('blogarticle',''))-1)//500+1, var.get('blogarticle','')[pos*500:(pos+1)*500] + '...\n/yes [title] [ascii title] 确认发送\n/no 继续编辑\n/prevpage 上一页 \n/nextpage 下一页\n/cancel 命令退出写作模式'))
     return READY
 
 def nextpage(bot, update):
@@ -55,7 +55,7 @@ def nextpage(bot, update):
     else:
         pos = pos +1
         var.set('blogarticlepos', pos)
-        update.message.reply_text('(%d/%d)\n%s'%(pos+1,(len(var.get('blogarticle',''))-1)//500+1, var.get('blogarticle','')[pos*500:(pos+1)*500] + '...\n/yes [title] [ascii title] 确认发送\n使用/no 继续编辑\n/prevpage 上一页 \n/nextpage 下一页\n使用/cancel 命令退出写作模式'))
+        update.message.reply_text('(%d/%d)\n%s'%(pos+1,(len(var.get('blogarticle',''))-1)//500+1, var.get('blogarticle','')[pos*500:(pos+1)*500] + '...\n/yes [title] [ascii title] 确认发送\n/no 继续编辑\n/prevpage 上一页 \n/nextpage 下一页\n/cancel 命令退出写作模式'))
     return READY
 
 
@@ -71,7 +71,7 @@ def confirm_yes(bot, update, args):
     return SENT
 
 def confirm_no(bot, update):
-    update.message.reply_text('(%d)\n%s'%(len(var.get('blogarticle','')), var.get('blogarticle','')[-500:] + '...\n使用/preview 命令来预览发送\n使用/cancel 命令退出写作模式'))
+    update.message.reply_text('(%d)\n%s'%(len(var.get('blogarticle','')), var.get('blogarticle','')[-500:] + '...\n/preview 命令来预览发送\n/cancel 命令退出写作模式'))
     return WM
 
 def check(bot, update):
