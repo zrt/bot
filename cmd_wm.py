@@ -5,6 +5,7 @@ import miniflux_client
 from telegram import (ReplyKeyboardMarkup, ReplyKeyboardRemove)
 from telegram.ext import (CommandHandler,ConversationHandler, RegexHandler, MessageHandler, Filters)
 import articlemanager
+import random
 
 WM, READY, SENT = range(3)
 
