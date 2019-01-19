@@ -24,5 +24,5 @@ uptime - show uptime
 rss -  miniflux rss
 gitpull - run git pull
 httpcallback - show http callback config
-wm enter writing mode
+wm - enter writing mode
 '''

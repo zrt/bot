@@ -30,7 +30,7 @@ tags: 灌水
 		os.system('cd %s && git push'%BLOGPATH)
 		os.system('cd %s && hexo g && hexo d'%BLOGPATH)
 	except Exception as e:
-		print e
+		print(e)
 
 def create(title,titleascii,article):
 	# 异步create
