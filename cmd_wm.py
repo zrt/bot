@@ -28,9 +28,23 @@ def addtext(bot, update):
     update.message.reply_text('(%d)\n%s'%(len(var.get('blogarticle','')), var.get('blogarticle','')[-500:] + '...\n/preview 命令来预览发送\n/cancel 命令退出写作模式'))
     return WM
 
+def randstr():
+    charset = []
+    for i in range(10):
+        charset.append(str(i))
+    for i in range(26):
+        charset.append(chr(ord('a')+i))
+        charset.append(chr(ord('A')+i))
+    return ''.join([random.choice(charset) for x in range(10)])
+
 def addimg(bot, update):
-    update.message.reply_text('todo')
-    
+    file_id = update.message.photo[-1]
+    newFile = bot.get_file(file_id)
+    file_name = 'blog_img_%s.png'%randstr()
+    newFile.download(file_name)
+    var.get('blogarticleimg', []).append(file_name)
+    var.set('blogarticle', var.get('blogarticle','') + '![photo](/img/%s)\n'%file_name)
+    update.message.reply_text('(%d)\n%s'%(len(var.get('blogarticle','')), var.get('blogarticle','')[-500:] + '...\n/preview 命令来预览发送\n/cancel 命令退出写作模式'))
     return WM
 
 def confirm(bot, update):
@@ -65,7 +79,7 @@ def confirm_yes(bot, update, args):
         return READY
     article = var.get('blogarticle','')
     article += '\n\n> via [msbot](https://github.com/zrt/bot)\n'
-    thread = articlemanager.create(args[0],args[1],article)
+    thread = articlemanager.create(args[0],args[1],article, var.get('blogarticleimg',[]))
     var.set('blogarticlethread', thread)
     update.message.reply_text('发送中...\n/check 检查发送进度\n/cancel 退出写作模式')
     return SENT
@@ -89,7 +103,9 @@ def check(bot, update):
 def cancel(bot, update):
     update.message.reply_text('canceled', reply_markup=ReplyKeyboardRemove())
     # 清空下载的图片
-
+    for x in var.get('blogarticleimg'):
+        if x.startswith('blog_img_'):
+            os.sytem('rm %s'%x)
     return ConversationHandler.END
 
 
